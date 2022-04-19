@@ -1,4 +1,4 @@
-package com.cytmo.documentationmanagement;
+package com.documentationmanagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,14 +1,16 @@
-package com.cytmo.documentationmanagement;
+package com.documentationmanagement.utils.SQL;
+
+import com.documentationmanagement.utils.SQL.ConnectToSQL;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SqlOp {
+public class SqlOption {
     ConnectToSQL sqlConn = new ConnectToSQL();
     Connection conn =null;
-    SqlOp() throws SQLException {
+    public SqlOption() throws SQLException {
         sqlConn.openConn();
         conn = sqlConn.conn;
 

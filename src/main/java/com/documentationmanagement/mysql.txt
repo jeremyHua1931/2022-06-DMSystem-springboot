@@ -1,0 +1,97 @@
+#全局用户信息表-only one
+create table users
+(
+    user_id             varchar(100)  null, #用户ID
+    user_name           varchar(200)  null, #用户昵称
+    user_pwd            varchar(100)  null, #用户密码
+    user_email          varchar(200)  null, #用户邮箱
+    personal_documentdb varchar(1000) null, #个人用户文献库, 文件默认放在个人默认文献库
+    Team_creator        varchar(1000) null, #创建的团队(团队id数组, 用','区分)
+    Team_joined         varchar(1000) null, #加入的团队(团队id数组, 用','区分)
+
+    PRIMARY KEY(userid)
+)
+
+#全局团队信息表-only one
+
+create table teams
+(
+    team_id             varchar(100)  null,
+    team_leader_id      varchar(100)  null,
+    team_administrators varchar(500)  null,
+    documentdb_id       varchar(500)  null,
+    team_members        varchar(1000) null,
+    read_permission     varchar(1000) null,  #阅读权限(默认 all, 用户id)
+    edit_permission     varchar(1000) null,  #批注权限(默认 all, 用户id)
+    comment_permission  varchar(1000) null,  #评论权限(默认 all, 用户id)
+
+    PRIMARY KEY(team_id,team_leader_id)
+);
+
+
+#文献库一般构造
+#文献库id及文献库名
+#个人用户和团队用户默认有一个默认文献库
+create table document_default
+(
+    file_id            varchar(100)  null,  #文件id
+    owner_id           varchar(100)  null,  #所属(用户id | 团队id)
+    file_name          varchar(100)  null,  #文件名
+    file_title         varchar(100)  null,  #文件标题
+    file_author        varchar(200)  null,  #文件作者
+    file_create_time   date          null,  #文件创建日期
+    file_type          varchar(100)  null,  #文件类型
+    file_edit_table    varchar(100)  null,  #文件批注信息表
+    file_comment_table varchar(100)  null,  #文件评论信息表
+    jc_name            varchar(200)  null,  #期刊或者会议名称
+    page_number        varchar(100)  null,  #页数
+    keyword            varchar(200)  null,  #关键词
+    subtract           longtext      null,  #摘要
+    permission         varchar(100)  null,  #文件权限(针对所有人: 可读, 可批注, 可评论)
+    read_permission    varchar(1000) null,  #阅读权限(all, share_link[0], 用户id)
+    edit_permission    varchar(1000) null,  #批注权限(all, share_link[1], 用户id)
+    comment_permission varchar(1000) null,  #评论权限(all, share_link[2], 用户id)
+    share_link         varchar(300)  null,  #分享链接(阅读链接, 批注链接, 评论链接)
+
+    PRIMARY KEY(file_id, owner_id)
+);
+
+#团队一般构造
+create table team_id_consist
+(
+    team_id                      varchar(100)  null,  #团队id
+    member_id                    varchar(100)  null,  #成员id
+    member_name                  varchar(100)  null,  #成员昵称
+    member_permission            varchar(200)  null,  #成员身份以及团队权限
+    member_group_permission      varchar(2000) null,  #成员分组及分组身份
+    member_doucumentdb           varchar(1000) null,  #成员能参与的文献库(默认all)
+
+    PRIMARY KEY(member_id, team_id)
+);
+
+#文件批注信息表
+create  table edit_file_id(
+    file_id          varchar(100)  null,  #文件id
+    location         varchar(200)  null,
+    editor           varchar(100)  null,
+    edit_time        date          null,
+    content          longtext      null,
+
+    PRIMARY KEY(file_id, location, editor, edit_time)
+)
+
+
+
+#文件评论信息表
+
+create  table comment_file_id(
+    file_id          varchar(100)  null,  #文件id
+    location         varchar(200)  null,
+    commentator      varchar(100)  null,
+    comment_time     date          null,
+    content          longtext      null,
+    PRIMARY KEY(file_id, location, commentator, comment_time)
+)
+
+
+
