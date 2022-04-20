@@ -1,11 +1,11 @@
 package com.documentationmanagement.service.serviceImpl;
 
 import com.documentationmanagement.utils.SQL.SqlOption;
-import com.documentationmanagement.model.user;
-import com.documentationmanagement.service.userService;
+import com.documentationmanagement.model.User;
+import com.documentationmanagement.service.UserService;
 import java.sql.SQLException;
 
-public class userServiceImpl implements userService{
+public class UserServiceImpl implements UserService {
 
     @Override
     public int loginService(String userID, String password)   throws SQLException{
@@ -24,7 +24,7 @@ public class userServiceImpl implements userService{
     @Override
     public int registerService(String userID,String userName,String userPwd, String userEmail)  throws SQLException{
 
-        user user=new user();
+        User user=new User();
 
         user.setUserId(userID);
         user.setUserName(userName);

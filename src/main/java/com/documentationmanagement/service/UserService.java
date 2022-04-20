@@ -1,11 +1,11 @@
 package com.documentationmanagement.service;
-import com.documentationmanagement.model.user;
 
 import java.sql.SQLException;
 
-public interface userService {
+public interface UserService {
 
     /*
+        用户功能
       1-登陆功能
       2-注册功能
 

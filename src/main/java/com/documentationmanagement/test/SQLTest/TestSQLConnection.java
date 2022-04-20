@@ -1,4 +1,4 @@
-package com.documentationmanagement.test;
+package com.documentationmanagement.test.SQLTest;
 
 import com.documentationmanagement.utils.SQL.ConnectToSQL;
 

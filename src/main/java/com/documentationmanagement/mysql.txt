@@ -56,7 +56,7 @@ create table document_default
     PRIMARY KEY(file_id, owner_id)
 );
 
-#团队一般构造
+#团队成员一般构造
 create table team_id_consist
 (
     team_id                      varchar(100)  null,  #团队id
